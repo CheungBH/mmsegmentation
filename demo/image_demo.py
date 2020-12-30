@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-
+import cv2
 from mmseg.apis import inference_segmentor, init_segmentor, show_result_pyplot
 from mmseg.core.evaluation import get_palette
 
@@ -15,6 +15,8 @@ def main():
         '--palette',
         default='cityscapes',
         help='Color palette used for segmentation map')
+    parser.add_argument(
+        '--out', default=None, help='Device used for inference')
     args = parser.parse_args()
 
     # build the model from a config file and a checkpoint file
@@ -22,7 +24,9 @@ def main():
     # test a single image
     result = inference_segmentor(model, args.img)
     # show the results
-    show_result_pyplot(model, args.img, result, get_palette(args.palette))
+    img = show_result_pyplot(model, args.img, result, get_palette(args.palette))
+    if args.out:
+        cv2.imwrite(args.out, img)
 
 
 if __name__ == '__main__':
