@@ -46,7 +46,7 @@ This project is released under the [Apache 2.0 license](LICENSE).
 
 ## Changelog
 
-v0.9.0 was released in 30/11/2020.
+v0.10.0 was released in 01/01/2021.
 Please refer to [changelog.md](docs/changelog.md) for details and release history.
 
 ## Benchmark and model zoo
@@ -60,6 +60,7 @@ Supported backbones:
 - [x] [HRNet](configs/hrnet/README.md)
 - [x] [ResNeSt](configs/resnest/README.md)
 - [x] [MobileNetV2](configs/mobilenet_v2/README.md)
+- [x] [MobileNetV3](configs/mobilenet_v3/README.md)
 
 Supported methods:
 
@@ -88,14 +89,28 @@ Supported methods:
 
 ## Installation
 
-Please refer to [INSTALL.md](docs/install.md) for installation and dataset preparation.
+Please refer to [get_started.md](docs/get_started.md#installation) for installation and dataset preparation.
 
 ## Get Started
 
-Please see [getting_started.md](docs/getting_started.md) for the basic usage of MMSegmentation.
-There are also tutorials for [adding new dataset](docs/tutorials/new_dataset.md), [designing data pipeline](docs/tutorials/data_pipeline.md), and [adding new modules](docs/tutorials/new_modules.md).
+Please see [train.md](docs/train.md) and [inference.md](docs/inference.md) for the basic usage of MMSegmentation.
+There are also tutorials for [customizing dataset](docs/tutorials/customize_datasets.md), [designing data pipeline](docs/tutorials/data_pipeline.md), [customizing modules](docs/tutorials/customize_models.md), and [customizing runtime](docs/tutorials/customize_runtime.md).
+We also provide many [training tricks](docs/tutorials/training_tricks.md).
 
 A Colab tutorial is also provided. You may preview the notebook [here](demo/MMSegmentation_Tutorial.ipynb) or directly [run](https://colab.research.google.com/github/open-mmlab/mmsegmentation/blob/master/demo/MMSegmentation_Tutorial.ipynb) on Colab.
+
+## Citation
+
+If you find this project useful in your research, please consider cite:
+
+```latex
+@misc{mmseg2020,
+    title={MMSegmentation, an Open Source Semantic Segmentation Toolbox},
+    author={MMSegmentation Contributors},
+    howpublished = {\url{https://github.com/open-mmlab/mmsegmentation}},
+    year={2020}
+}
+```
 
 ## Contributing
 
@@ -107,3 +122,15 @@ MMSegmentation is an open source project that welcome any contribution and feedb
 We wish that the toolbox and benchmark could serve the growing research
 community by providing a flexible as well as standardized toolkit to reimplement existing methods
 and develop their own new semantic segmentation methods.
+
+## Projects in OpenMMLab
+
+- [MMCV](https://github.com/open-mmlab/mmcv): OpenMMLab foundational library for computer vision.
+- [MMClassification](https://github.com/open-mmlab/mmclassification): OpenMMLab image classification toolbox and benchmark.
+- [MMDetection](https://github.com/open-mmlab/mmdetection): OpenMMLab detection toolbox and benchmark.
+- [MMDetection3D](https://github.com/open-mmlab/mmdetection3d): OpenMMLab's next-generation platform for general 3D object detection.
+- [MMSegmentation](https://github.com/open-mmlab/mmsegmentation): OpenMMLab semantic segmentation toolbox and benchmark.
+- [MMAction2](https://github.com/open-mmlab/mmaction2): OpenMMLab's next-generation action understanding toolbox and benchmark.
+- [MMTracking](https://github.com/open-mmlab/mmtracking): OpenMMLab video perception toolbox and benchmark.
+- [MMPose](https://github.com/open-mmlab/mmpose): OpenMMLab pose estimation toolbox and benchmark.
+- [MMEditing](https://github.com/open-mmlab/mmediting): OpenMMLab image and video editing toolbox.

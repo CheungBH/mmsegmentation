@@ -110,21 +110,27 @@ def main():
         shuffle=False)
 
     # build the model and load checkpoint
-    model = build_segmentor(cfg.model, train_cfg=None, test_cfg=cfg.test_cfg)
+    cfg.model.train_cfg = None
+    model = build_segmentor(cfg.model, test_cfg=cfg.get('test_cfg'))
     checkpoint = load_checkpoint(model, args.checkpoint, map_location='cpu')
     model.CLASSES = checkpoint['meta']['CLASSES']
     model.PALETTE = checkpoint['meta']['PALETTE']
 
+    efficient_test = False
+    if args.eval_options is not None:
+        efficient_test = args.eval_options.get('efficient_test', False)
+
     if not distributed:
         model = MMDataParallel(model, device_ids=[0])
-        outputs = single_gpu_test(model, data_loader, args.show, args.show_dir)
+        outputs = single_gpu_test(model, data_loader, args.show, args.show_dir,
+                                  efficient_test)
     else:
         model = MMDistributedDataParallel(
             model.cuda(),
             device_ids=[torch.cuda.current_device()],
             broadcast_buffers=False)
         outputs = multi_gpu_test(model, data_loader, args.tmpdir,
-                                 args.gpu_collect)
+                                 args.gpu_collect, efficient_test)
 
     rank, _ = get_dist_info()
     if rank == 0:
